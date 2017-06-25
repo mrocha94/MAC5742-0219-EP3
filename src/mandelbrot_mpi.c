@@ -2,6 +2,7 @@
 // Mateus Rocha Mazzari 8941255
 
 #include "mpi.h"
+#include "omp.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -127,39 +128,43 @@ void compute_mandelbrot_kernel(int *local_iteration_buffer, int init_k, int chun
   double c_x;
   double c_y;
   int i_k = init_k;
+  int chunk = 8;
 
 
+  #pragma omp parallel for \
+    private(i, z_x, z_y, z_x_squared, z_y_squared, iteration, i_x, i_y, i_k, c_x, c_y)\
+    default(shared) schedule(static,chunk)
   for (i = 0; i < chunksize; i++) {
-    if (i_k >= i_y_max * i_x_max)
-      break;
+    i_k = init_k + i;
+    if (i_k < i_y_max * i_x_max) {
 
-    i_y = i_k / i_x_max;
-    c_y = c_y_min + i_y * pixel_height;
-    if (fabs(c_y) < pixel_height / 2) {
-      c_y = 0.0;
+      i_y = i_k / i_x_max;
+      c_y = c_y_min + i_y * pixel_height;
+      if (fabs(c_y) < pixel_height / 2) {
+        c_y = 0.0;
+      }
+
+      i_x = i_k % i_x_max;
+      c_x = c_x_min + i_x * pixel_width;
+
+      z_x = 0.0;
+      z_y = 0.0;
+
+      z_x_squared = 0.0;
+      z_y_squared = 0.0;
+
+      for (iteration = 0; iteration < iteration_max &&
+                          ((z_x_squared + z_y_squared) < escape_radius_squared);
+           iteration++) {
+        z_y = 2 * z_x * z_y + c_y;
+        z_x = z_x_squared - z_y_squared + c_x;
+
+        z_x_squared = z_x * z_x;
+        z_y_squared = z_y * z_y;
+      };
+
+      local_iteration_buffer[i] = iteration;
     }
-
-    i_x = i_k % i_x_max;
-    c_x = c_x_min + i_x * pixel_width;
-
-    z_x = 0.0;
-    z_y = 0.0;
-
-    z_x_squared = 0.0;
-    z_y_squared = 0.0;
-
-    for (iteration = 0; iteration < iteration_max &&
-                        ((z_x_squared + z_y_squared) < escape_radius_squared);
-         iteration++) {
-      z_y = 2 * z_x * z_y + c_y;
-      z_x = z_x_squared - z_y_squared + c_x;
-
-      z_x_squared = z_x * z_x;
-      z_y_squared = z_y * z_y;
-    };
-
-    local_iteration_buffer[i] = iteration;
-    i_k++;
   }
 }
 
