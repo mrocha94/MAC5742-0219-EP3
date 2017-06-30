@@ -131,9 +131,9 @@ void compute_mandelbrot_kernel(int *local_iteration_buffer, int init_k, int chun
   int chunk = 8;
 
 
-  #pragma omp parallel for \
-    private(i, z_x, z_y, z_x_squared, z_y_squared, iteration, i_x, i_y, i_k, c_x, c_y)\
-    default(shared) schedule(static,chunk)
+  // #pragma omp parallel for \
+  //   private(i, z_x, z_y, z_x_squared, z_y_squared, iteration, i_x, i_y, i_k, c_x, c_y)\
+  //   default(shared) schedule(static,chunk)
   for (i = 0; i < chunksize; i++) {
     i_k = init_k + i;
     if (i_k < i_y_max * i_x_max) {
