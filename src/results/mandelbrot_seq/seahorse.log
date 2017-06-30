@@ -1,0 +1,15 @@
+
+ Performance counter stats for './mandelbrot_seq -0.8 -0.7 0.05 0.15 8192 1' (10 runs):
+
+      93005.133112      task-clock (msec)         #    1.000 CPUs utilized            ( +-  0.04% )
+               163      context-switches          #    0.002 K/sec                    ( +-  0.13% )
+                 0      cpu-migrations            #    0.000 K/sec                  
+                46      page-faults               #    0.000 K/sec                    ( +-  0.37% )
+   <not supported>      cycles                   
+   <not supported>      stalled-cycles-frontend  
+   <not supported>      stalled-cycles-backend   
+   <not supported>      instructions             
+   <not supported>      branches                 
+   <not supported>      branch-misses            
+
+93.007648586 seconds time elapsed

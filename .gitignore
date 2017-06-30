@@ -55,7 +55,6 @@ dkms.conf
 *.ppm
 
 measurements/
-
 *.aux
 *.bbl
 *.blg
