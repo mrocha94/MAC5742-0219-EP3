@@ -111,13 +111,13 @@ void write_to_file() {
   fclose(file);
 };
 
-void compute_mandelbrot_kernel(int *local_iteration_buffer, int init_k, int chunksize) {
+void compute_mandelbrot_kernel(int *local_iteration_buffer, int init_k,
+                               int chunksize) {
   double z_x;
   double z_y;
   double z_x_squared;
   double z_y_squared;
   double escape_radius_squared = 4;
-
 
   int iteration;
   int i_x;
@@ -128,12 +128,7 @@ void compute_mandelbrot_kernel(int *local_iteration_buffer, int init_k, int chun
   double c_x;
   double c_y;
   int i_k = init_k;
-  int chunk = 8;
 
-
-  // #pragma omp parallel for \
-  //   private(i, z_x, z_y, z_x_squared, z_y_squared, iteration, i_x, i_y, i_k, c_x, c_y)\
-  //   default(shared) schedule(static,chunk)
   for (i = 0; i < chunksize; i++) {
     i_k = init_k + i;
     if (i_k < i_y_max * i_x_max) {
@@ -174,7 +169,7 @@ void compute_mandelbrot(int taskid, int numtasks) {
   int *local_iteration_buffer;
   MPI_Status status;
 
-  local_iteration_buffer = (int *) malloc (chunksize * sizeof(int));
+  local_iteration_buffer = (int *)malloc(chunksize * sizeof(int));
   if (taskid == MASTER) {
     init_k = 0;
     compute_mandelbrot_kernel(local_iteration_buffer, init_k, chunksize);
@@ -186,7 +181,8 @@ void compute_mandelbrot(int taskid, int numtasks) {
     }
 
     for (i = 1; i < numtasks; i++) {
-      MPI_Recv(local_iteration_buffer, chunksize, MPI_INT, i, 0, MPI_COMM_WORLD, &status);
+      MPI_Recv(local_iteration_buffer, chunksize, MPI_INT, i, 0, MPI_COMM_WORLD,
+               &status);
       init_k = i * chunksize;
       for (j = 0; j < chunksize; j++) {
         x = (init_k + j) % i_x_max;
@@ -197,7 +193,8 @@ void compute_mandelbrot(int taskid, int numtasks) {
   } else {
     init_k = taskid * chunksize;
     compute_mandelbrot_kernel(local_iteration_buffer, init_k, chunksize);
-    MPI_Send(local_iteration_buffer, chunksize, MPI_INT, MASTER, 0, MPI_COMM_WORLD);
+    MPI_Send(local_iteration_buffer, chunksize, MPI_INT, MASTER, 0,
+             MPI_COMM_WORLD);
   }
   free(local_iteration_buffer);
 }
@@ -212,7 +209,8 @@ int main(int argc, char *argv[]) {
   init(argc, argv);
 
   if ((i_y_max * i_x_max) % numtasks != 0) {
-    printf("Número de tasks tem que ser um divisor de %d\n", (i_y_max * i_x_max));
+    printf("Número de tasks tem que ser um divisor de %d\n",
+           (i_y_max * i_x_max));
     exit(0);
   }
 
