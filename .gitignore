@@ -55,14 +55,11 @@ dkms.conf
 *.ppm
 
 mandelbrot_seq
-mandelbrot_pth
-mandelbrot_omp
-
-measurements/
+mandelbrot_mpi_io
+mandelbrot_mpi
 
 *.aux
 *.bbl
 *.blg
-*.log
 *.pdf
 *.spl
