@@ -53,11 +53,6 @@ dkms.conf
 
 *.swp
 *.ppm
-
-mandelbrot_seq
-mandelbrot_mpi_io
-mandelbrot_mpi
-
 *.aux
 *.bbl
 *.blg
