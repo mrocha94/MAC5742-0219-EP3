@@ -5,12 +5,11 @@
                346      context-switches          #    0.010 K/sec                    ( +- 20.52% )
                 33      cpu-migrations            #    0.001 K/sec                    ( +- 14.36% )
             74,809      page-faults               #    0.002 M/sec                    ( +-  0.04% )
-   <not supported>      cycles                   
-   <not supported>      stalled-cycles-frontend  
-   <not supported>      stalled-cycles-backend   
-   <not supported>      instructions             
-   <not supported>      branches                 
-   <not supported>      branch-misses            
+   <not supported>      cycles
+   <not supported>      stalled-cycles-frontend
+   <not supported>      stalled-cycles-backend
+   <not supported>      instructions
+   <not supported>      branches
+   <not supported>      branch-misses
 
        6.750733357 seconds time elapsed                                          ( +-  0.87% )
-

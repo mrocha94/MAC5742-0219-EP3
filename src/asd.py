@@ -18,7 +18,6 @@ def make_plot(arg):
   for item in data:
     if(item[fixed_x_type] == fixed_x_value and item[x_type] in x_value):
       bar.append((item[x_type], item["time"], item["deviation"]))
-
   subtitle = []
   fig, ax = plt.subplots()
   groups = len(bar)
@@ -41,11 +40,11 @@ def make_plot(arg):
 
   plt.show()
 
-methods = ["seq", "mpi_1"] #, "mpi_2", "mpi_4", "mpi_8"]
+methods = ["seq", "mpi_1", "mpi_2"] #, "mpi_2", "mpi_4", "mpi_8"]
 regions = ["elephant", "full", "seahorse", "triple_spiral"]
 
 data = []
-pattern = "([\d\,]+) seconds time elapsed \s+\( \+\-\s+([\d\,]+)\% \)"
+pattern = "([\d\.]+) seconds time elapsed\s+\( \+\-\s+([\d\.]+)\% \)"
 regex = re.compile(pattern)
 
 for method in methods:
@@ -62,5 +61,5 @@ for method in methods:
       item["time"]      = float(match[0].replace(',', '.'))
       item["deviation"] = float(match[1].replace(',', '.'))
       data.append(item)
-
+print data
 make_plot({"region": "seahorse", "method": methods, "x": "method"})
