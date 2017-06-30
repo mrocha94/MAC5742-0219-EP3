@@ -1,0 +1,82 @@
+--------------------------------------------------------------------------
+Open RTE was unable to open the hostfile:
+    hostfile
+Check to make sure the path and filename are correct.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+Open RTE was unable to open the hostfile:
+    hostfile
+Check to make sure the path and filename are correct.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+Open RTE was unable to open the hostfile:
+    hostfile
+Check to make sure the path and filename are correct.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+Open RTE was unable to open the hostfile:
+    hostfile
+Check to make sure the path and filename are correct.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+Open RTE was unable to open the hostfile:
+    hostfile
+Check to make sure the path and filename are correct.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+Open RTE was unable to open the hostfile:
+    hostfile
+Check to make sure the path and filename are correct.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+Open RTE was unable to open the hostfile:
+    hostfile
+Check to make sure the path and filename are correct.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+Open RTE was unable to open the hostfile:
+    hostfile
+Check to make sure the path and filename are correct.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+Open RTE was unable to open the hostfile:
+    hostfile
+Check to make sure the path and filename are correct.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+Open RTE was unable to open the hostfile:
+    hostfile
+Check to make sure the path and filename are correct.
+--------------------------------------------------------------------------
+
+ Performance counter stats for 'mpirun -np 8 --hostfile hostfile 8 mandelbrot_mpi -2.5 1.5 -2.0 2.0 8192' (10 runs):
+
+         64,533442      task-clock (msec)         #    0,053 CPUs utilized            ( +-  4,57% )
+                64      context-switches          #    0,986 K/sec                    ( +- 11,33% )
+                16      cpu-migrations            #    0,248 K/sec                    ( +-  8,89% )
+               831      page-faults               #    0,013 M/sec                    ( +-  0,28% )
+        68.434.117      cycles                    #    1,060 GHz                      ( +-  1,97% )
+   <not supported>      stalled-cycles-frontend  
+   <not supported>      stalled-cycles-backend   
+        91.783.686      instructions              #    1,34  insns per cycle          ( +-  0,33% )
+        19.452.683      branches                  #  301,436 M/sec                    ( +-  0,29% )
+           502.394      branch-misses             #    2,58% of all branches          ( +-  1,39% )
+
+       1,229064794 seconds time elapsed                                          ( +-  2,61% )
+
+
+ Performance counter stats for 'mpirun -np 8 --hostfile hostfile mandelbrot_mpi -2.5 1.5 -2.0 2.0 8192' (10 runs):
+
+      13071.441280      task-clock (msec)         #    1.711 CPUs utilized            ( +-  0.65% )
+               192      context-switches          #    0.015 K/sec                    ( +-  1.67% )
+                25      cpu-migrations            #    0.002 K/sec                    ( +-  4.79% )
+            37,830      page-faults               #    0.003 M/sec                    ( +-  0.02% )
+   <not supported>      cycles                   
+   <not supported>      stalled-cycles-frontend  
+   <not supported>      stalled-cycles-backend   
+   <not supported>      instructions             
+   <not supported>      branches                 
+   <not supported>      branch-misses            
+
+       7.640490321 seconds time elapsed                                          ( +-  1.22% )
+

@@ -54,15 +54,10 @@ dkms.conf
 *.swp
 *.ppm
 
-mandelbrot_seq
-mandelbrot_pth
-mandelbrot_omp
-
 measurements/
 
 *.aux
 *.bbl
 *.blg
-*.log
 *.pdf
 *.spl
